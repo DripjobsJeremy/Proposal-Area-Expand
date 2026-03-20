@@ -374,6 +374,7 @@
   .substrate-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 4px;
   }
   .substrate-table thead th {
     font-size: 10px;
@@ -381,7 +382,7 @@
     text-transform: uppercase;
     letter-spacing: 0.07em;
     color: #b5b5c3;
-    padding: 8px 12px 6px;
+    padding: 10px 16px 8px;
     border-bottom: 1px solid #ede9fe;
     white-space: nowrap;
   }
@@ -393,20 +394,20 @@
   }
   .substrate-row:last-child { border-bottom: none; }
   .substrate-row td {
-    padding: 10px 12px;
-    vertical-align: middle;
+    padding: 16px 16px;
+    vertical-align: top;
     font-size: 13px;
     color: #374151;
   }
   .substrate-row td:first-child { padding-left: 0; }
-  .substrate-row td:last-child { text-align: right; padding-right: 0; font-weight: 700; color: #1e1e2d; }
+  .substrate-row td:last-child { text-align: right; padding-right: 0; }
 
-  .substrate-name-wrap {}
-  .substrate-name { font-weight: 700; color: #1e1e2d; font-size: 13px; }
+  /* Col 1 — Substrate identity */
+  .substrate-name { font-weight: 700; color: #1e1e2d; font-size: 14px; margin-bottom: 4px; }
   .substrate-client-label {
     font-size: 11px;
     color: #9ca3af;
-    margin-top: 1px;
+    margin-bottom: 6px;
   }
   .substrate-client-label span {
     background: #f3f4f6;
@@ -416,59 +417,65 @@
     font-weight: 600;
     color: #6b7280;
   }
-
   .substrate-category-pill {
     display: inline-block;
-    background: #f3f4f6;
-    color: #374151;
-    font-size: 11px;
-    font-weight: 600;
+    background: #ede9fe;
+    color: #6d28d9;
+    font-size: 10px;
+    font-weight: 700;
     padding: 2px 8px;
     border-radius: 10px;
     white-space: nowrap;
+    letter-spacing: 0.03em;
   }
 
-  .substrate-calc-type {
+  /* Col 2 — Product */
+  .substrate-product-pill {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 7px;
     font-size: 12px;
-    color: #6b7280;
+    font-weight: 500;
+    color: #374151;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+    padding: 7px 11px;
+    line-height: 1.5;
+    white-space: normal;
+  }
+  .substrate-product-pill i { color: #0DCECE; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+
+  /* Col 3 — Measurement */
+  .substrate-meas-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #c4b5fd;
+    margin-bottom: 3px;
   }
   .substrate-calc-value {
     font-size: 13px;
-    font-weight: 600;
-    color: #374151;
+    font-weight: 700;
+    color: #1e1e2d;
+    margin-bottom: 6px;
   }
-
-  .substrate-product-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: #6b7280;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    padding: 2px 8px;
-    white-space: nowrap;
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .substrate-product-pill i { color: #0DCECE; font-size: 10px; flex-shrink: 0; }
-
-  .substrate-qty {
-    font-size: 13px;
-    font-weight: 600;
-    color: #374151;
-  }
-  .substrate-qty-unit {
-    font-size: 11px;
+  .substrate-qty-rate {
+    font-size: 12px;
     color: #9ca3af;
-    font-weight: 400;
+    line-height: 1.6;
+  }
+  .substrate-qty-rate strong {
+    color: #374151;
+    font-weight: 700;
   }
 
-  .substrate-price {
-    font-size: 13px;
-    color: #6b7280;
+  /* Col 4 — Total */
+  .substrate-total-amount {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e1e2d;
   }
 
   /* Substrate panel footer */
@@ -795,12 +802,9 @@
                 <table class="substrate-table">
                   <thead>
                     <tr>
-                      <th style="width:24%;">Substrate</th>
-                      <th style="width:14%;">Category</th>
-                      <th style="width:22%;">Product</th>
-                      <th style="width:16%;">Calculation</th>
-                      <th style="width:12%;">Qty / Measure</th>
-                      <th style="width:12%;">Price per unit</th>
+                      <th style="width:30%;">Substrate</th>
+                      <th style="width:28%;">Product</th>
+                      <th style="width:27%;">Measurement</th>
                       <th>Total</th>
                     </tr>
                   </thead>
@@ -809,64 +813,55 @@
                       <td>
                         <div class="substrate-name">Walls</div>
                         <div class="substrate-client-label"><span>Client label:</span> Interior Walls</div>
+                        <span class="substrate-category-pill">Walls (10 × 10)</span>
                       </td>
-                      <td><span class="substrate-category-pill">Walls (10 × 10)</span></td>
                       <td>
-                        <div class="substrate-product-pill" title="Benjamin Moore Aura Interior Matte">
+                        <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Aura Interior Matte
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Walls)</div>
+                        <div class="substrate-qty-rate"><strong>486</strong> sq ft &nbsp;·&nbsp; $1.85 / sq ft</div>
                       </td>
-                      <td>
-                        <span class="substrate-qty">486 <span class="substrate-qty-unit">sq ft</span></span>
-                      </td>
-                      <td class="substrate-price">$1.85/sq ft</td>
-                      <td>$899.10</td>
+                      <td><div class="substrate-total-amount">$899.10</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Ceiling</div>
                         <div class="substrate-client-label"><span>Client label:</span> Ceiling (Flat)</div>
+                        <span class="substrate-category-pill">Ceiling</span>
                       </td>
-                      <td><span class="substrate-category-pill">Ceiling</span></td>
                       <td>
-                        <div class="substrate-product-pill" title="Benjamin Moore Waterborne Ceiling White">
+                        <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Ceiling White
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Floor)</div>
+                        <div class="substrate-qty-rate"><strong>270</strong> sq ft &nbsp;·&nbsp; $1.65 / sq ft</div>
                       </td>
-                      <td>
-                        <span class="substrate-qty">270 <span class="substrate-qty-unit">sq ft</span></span>
-                      </td>
-                      <td class="substrate-price">$1.65/sq ft</td>
-                      <td>$445.50</td>
+                      <td><div class="substrate-total-amount">$445.50</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Trim &amp; Doors</div>
                         <div class="substrate-client-label"><span>Client label:</span> Trim, Baseboard &amp; Doors</div>
+                        <span class="substrate-category-pill">Trim</span>
                       </td>
-                      <td><span class="substrate-category-pill">Trim</span></td>
                       <td>
-                        <div class="substrate-product-pill" title="Benjamin Moore Advance Semi-Gloss">
+                        <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Advance Semi-Gloss
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Price Per Item</div>
+                        <div class="substrate-qty-rate"><strong>1</strong> item &nbsp;·&nbsp; $755.40 flat</div>
                       </td>
-                      <td>
-                        <span class="substrate-qty">1 <span class="substrate-qty-unit">item</span></span>
-                      </td>
-                      <td class="substrate-price">$755.40 flat</td>
-                      <td>$755.40</td>
+                      <td><div class="substrate-total-amount">$755.40</div></td>
                     </tr>
                   </tbody>
                 </table>
@@ -918,12 +913,9 @@
                 <table class="substrate-table">
                   <thead>
                     <tr>
-                      <th style="width:24%;">Substrate</th>
-                      <th style="width:14%;">Category</th>
-                      <th style="width:22%;">Product</th>
-                      <th style="width:16%;">Calculation</th>
-                      <th style="width:12%;">Qty / Measure</th>
-                      <th style="width:12%;">Price per unit</th>
+                      <th style="width:30%;">Substrate</th>
+                      <th style="width:28%;">Product</th>
+                      <th style="width:27%;">Measurement</th>
                       <th>Total</th>
                     </tr>
                   </thead>
@@ -932,58 +924,55 @@
                       <td>
                         <div class="substrate-name">Walls</div>
                         <div class="substrate-client-label"><span>Client label:</span> Bedroom Walls</div>
+                        <span class="substrate-category-pill">Walls (10 × 10)</span>
                       </td>
-                      <td><span class="substrate-category-pill">Walls (10 × 10)</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Aura Interior Matte
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Walls)</div>
+                        <div class="substrate-qty-rate"><strong>378</strong> sq ft &nbsp;·&nbsp; $1.85 / sq ft</div>
                       </td>
-                      <td><span class="substrate-qty">378 <span class="substrate-qty-unit">sq ft</span></span></td>
-                      <td class="substrate-price">$1.85/sq ft</td>
-                      <td>$699.30</td>
+                      <td><div class="substrate-total-amount">$699.30</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Ceiling</div>
                         <div class="substrate-client-label"><span>Client label:</span> Ceiling (Flat)</div>
+                        <span class="substrate-category-pill">Ceiling</span>
                       </td>
-                      <td><span class="substrate-category-pill">Ceiling</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Ceiling White
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Floor)</div>
+                        <div class="substrate-qty-rate"><strong>168</strong> sq ft &nbsp;·&nbsp; $1.65 / sq ft</div>
                       </td>
-                      <td><span class="substrate-qty">168 <span class="substrate-qty-unit">sq ft</span></span></td>
-                      <td class="substrate-price">$1.65/sq ft</td>
-                      <td>$277.20</td>
+                      <td><div class="substrate-total-amount">$277.20</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Doors</div>
                         <div class="substrate-client-label"><span>Client label:</span> Interior Doors</div>
+                        <span class="substrate-category-pill">Doors</span>
                       </td>
-                      <td><span class="substrate-category-pill">Doors</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Advance Semi-Gloss
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Price Per Item</div>
+                        <div class="substrate-qty-rate"><strong>2</strong> doors &nbsp;·&nbsp; $336.75 ea</div>
                       </td>
-                      <td><span class="substrate-qty">2 <span class="substrate-qty-unit">doors</span></span></td>
-                      <td class="substrate-price">$336.75 ea</td>
-                      <td>$673.50</td>
+                      <td><div class="substrate-total-amount">$673.50</div></td>
                     </tr>
                   </tbody>
                 </table>
@@ -1035,12 +1024,9 @@
                 <table class="substrate-table">
                   <thead>
                     <tr>
-                      <th style="width:24%;">Substrate</th>
-                      <th style="width:14%;">Category</th>
-                      <th style="width:22%;">Product</th>
-                      <th style="width:16%;">Calculation</th>
-                      <th style="width:12%;">Qty / Measure</th>
-                      <th style="width:12%;">Price per unit</th>
+                      <th style="width:30%;">Substrate</th>
+                      <th style="width:28%;">Product</th>
+                      <th style="width:27%;">Measurement</th>
                       <th>Total</th>
                     </tr>
                   </thead>
@@ -1049,77 +1035,73 @@
                       <td>
                         <div class="substrate-name">Siding</div>
                         <div class="substrate-client-label"><span>Client label:</span> Exterior Siding</div>
+                        <span class="substrate-category-pill">Exterior Paint</span>
                       </td>
-                      <td><span class="substrate-category-pill">Exterior Paint</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Aura Exterior Satin
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Walls)</div>
+                        <div class="substrate-qty-rate"><strong>650</strong> sq ft &nbsp;·&nbsp; $2.20 / sq ft</div>
                       </td>
-                      <td><span class="substrate-qty">650 <span class="substrate-qty-unit">sq ft</span></span></td>
-                      <td class="substrate-price">$2.20/sq ft</td>
-                      <td>$1,430.00</td>
+                      <td><div class="substrate-total-amount">$1,430.00</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Fascia &amp; Soffit</div>
                         <div class="substrate-client-label"><span>Client label:</span> Fascia Board &amp; Soffit</div>
+                        <span class="substrate-category-pill">Fascia</span>
                       </td>
-                      <td><span class="substrate-category-pill">Fascia</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Advance Satin
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Linear Foot</div>
+                        <div class="substrate-qty-rate"><strong>90</strong> lin ft &nbsp;·&nbsp; $6.00 / ln ft</div>
                       </td>
-                      <td><span class="substrate-qty">90 <span class="substrate-qty-unit">lin ft</span></span></td>
-                      <td class="substrate-price">$6.00/ln ft</td>
-                      <td>$540.00</td>
+                      <td><div class="substrate-total-amount">$540.00</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Trim &amp; Window Casings</div>
                         <div class="substrate-client-label"><span>Client label:</span> Exterior Trim</div>
+                        <span class="substrate-category-pill">Trim</span>
                       </td>
-                      <td><span class="substrate-category-pill">Trim</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Advance Semi-Gloss
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Price Per Item</div>
+                        <div class="substrate-qty-rate"><strong>1</strong> item &nbsp;·&nbsp; $780.00 flat</div>
                       </td>
-                      <td><span class="substrate-qty">1 <span class="substrate-qty-unit">item</span></span></td>
-                      <td class="substrate-price">$780.00 flat</td>
-                      <td>$780.00</td>
+                      <td><div class="substrate-total-amount">$780.00</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Front Door</div>
                         <div class="substrate-client-label"><span>Client label:</span> Entry Door (2 Sides)</div>
+                        <span class="substrate-category-pill">Doors</span>
                       </td>
-                      <td><span class="substrate-category-pill">Doors</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Aura Grand Entrance
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Price Per Item</div>
+                        <div class="substrate-qty-rate"><strong>1</strong> door &nbsp;·&nbsp; $450.00 flat</div>
                       </td>
-                      <td><span class="substrate-qty">1 <span class="substrate-qty-unit">door</span></span></td>
-                      <td class="substrate-price">$450.00 flat</td>
-                      <td>$450.00</td>
+                      <td><div class="substrate-total-amount">$450.00</div></td>
                     </tr>
                   </tbody>
                 </table>
@@ -1171,12 +1153,9 @@
                 <table class="substrate-table">
                   <thead>
                     <tr>
-                      <th style="width:24%;">Substrate</th>
-                      <th style="width:14%;">Category</th>
-                      <th style="width:22%;">Product</th>
-                      <th style="width:16%;">Calculation</th>
-                      <th style="width:12%;">Qty / Measure</th>
-                      <th style="width:12%;">Price per unit</th>
+                      <th style="width:30%;">Substrate</th>
+                      <th style="width:28%;">Product</th>
+                      <th style="width:27%;">Measurement</th>
                       <th>Total</th>
                     </tr>
                   </thead>
@@ -1185,39 +1164,37 @@
                       <td>
                         <div class="substrate-name">Walls</div>
                         <div class="substrate-client-label"><span>Client label:</span> Kitchen Walls</div>
+                        <span class="substrate-category-pill">Walls (10 × 10)</span>
                       </td>
-                      <td><span class="substrate-category-pill">Walls (10 × 10)</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Aura Bath &amp; Spa
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Walls)</div>
+                        <div class="substrate-qty-rate"><strong>162</strong> sq ft &nbsp;·&nbsp; $2.10 / sq ft</div>
                       </td>
-                      <td><span class="substrate-qty">162 <span class="substrate-qty-unit">sq ft</span></span></td>
-                      <td class="substrate-price">$2.10/sq ft</td>
-                      <td>$340.20</td>
+                      <td><div class="substrate-total-amount">$340.20</div></td>
                     </tr>
                     <tr class="substrate-row">
                       <td>
                         <div class="substrate-name">Ceiling</div>
                         <div class="substrate-client-label"><span>Client label:</span> Ceiling</div>
+                        <span class="substrate-category-pill">Ceiling</span>
                       </td>
-                      <td><span class="substrate-category-pill">Ceiling</span></td>
                       <td>
                         <div class="substrate-product-pill">
                           <i class="fas fa-tint"></i> BM Ceiling White
                         </div>
                       </td>
                       <td>
-                        <div class="substrate-calc-type">Calc type</div>
+                        <div class="substrate-meas-label">Calc Type</div>
                         <div class="substrate-calc-value">Sq Ft (Floor)</div>
+                        <div class="substrate-qty-rate"><strong>120</strong> sq ft &nbsp;·&nbsp; $1.65 / sq ft</div>
                       </td>
-                      <td><span class="substrate-qty">120 <span class="substrate-qty-unit">sq ft</span></span></td>
-                      <td class="substrate-price">$1.65/sq ft</td>
-                      <td>$198.00</td>
+                      <td><div class="substrate-total-amount">$198.00</div></td>
                     </tr>
                   </tbody>
                 </table>
